@@ -1,0 +1,26 @@
+{
+  "name": "Data Pipeline Airflow/Kafka",
+  // 1. Tell Codespaces to use Docker Compose
+  "dockerComposeFile": "docker-compose.yml",
+  // 2. Specify which service to use for the VS Code terminal
+  "service": "airflow-scheduler", 
+  // 3. Set the workspace root for the file explorer
+  "workspaceFolder": "/opt/airflow/dags", 
+  // 4. Configure ports for the Airflow UI and Kafka
+  "portsAttributes": {
+    "8080": { "label": "Airflow Web UI", "onAutoForward": "openBrowser" },
+    "9092": { "label": "Kafka Broker", "onAutoForward": "notify" }
+  },
+  "shutdownAction": "stopCompose",
+  "remoteUser": "airflow", // Ensure consistent user permissions
+  
+  // V V V КРИТИЧЕСКАЯ КОМАНДА ДЛЯ УСТАНОВКИ ЗАВИСИМОСТЕЙ V V V
+  "postCreateCommand": "/usr/bin/python -m pip install --upgrade pip && /usr/bin/python -m pip install -r /workspaces/final_project/requirements.txt",
+  
+  // 5. Recommended extensions for Data Engineering
+  "extensions": [
+    "ms-python.python",
+    "redhat.vscode-yaml",
+    "cweijan.vscode-sqlite-explorer"
+  ]
+}
